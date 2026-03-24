@@ -66,8 +66,9 @@
         .font-display {
             font-family: 'Playfair Display', serif;
         }
-        .hero-pattern {
-            background: linear-gradient(135deg, rgba(128, 0, 32, 0.85) 0%, rgba(90, 0, 22, 0.9) 100%);
+        /* Lighter overlay for better image visibility */
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%);
         }
         .service-card {
             transition: all 0.3s ease;
@@ -84,6 +85,9 @@
         }
         .gold-text {
             color: #d4af37;
+        }
+        .border-gold {
+            border-color: #d4af37;
         }
         .bg-maroon {
             background-color: #800020;
@@ -158,18 +162,18 @@
         </div>
     </header>
 
-    <!-- Hero Section with Carousel -->
+    <!-- Hero Section with Carousel - Lighter Overlay -->
     <section id="home" class="pt-20 relative">
         <div class="relative h-screen overflow-hidden">
             <div id="carouselContainer" class="relative w-full h-full">
                 <!-- Slide 1 - Gourmet Burger -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <div class="hero-overlay absolute inset-0 z-10"></div>
                     <img src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Gourmet Burger" class="w-full h-full object-cover">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Welcome to Folks & Roses</h1>
-                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Where Friends Meet and Dine</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Welcome to Folks & Roses</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Where Friends Meet and Dine</p>
                             <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
                                 Reserve a Table <i class="fas fa-arrow-right"></i>
                             </a>
@@ -179,12 +183,12 @@
                 
                 <!-- Slide 2 - Chef's Special -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <div class="hero-overlay absolute inset-0 z-10"></div>
                     <img src="https://images.pexels.com/photos/1321224/pexels-photo-1321224.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Chef's Special" class="w-full h-full object-cover">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Chef's Special</h1>
-                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Exquisite dishes crafted by our award-winning chef</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Chef's Special</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Exquisite dishes crafted by our award-winning chef</p>
                             <a href="#menu" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
                                 View Menu <i class="fas fa-arrow-right"></i>
                             </a>
@@ -194,12 +198,12 @@
                 
                 <!-- Slide 3 - Artisan Pizza -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <div class="hero-overlay absolute inset-0 z-10"></div>
                     <img src="https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Artisan Pizza" class="w-full h-full object-cover">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Artisan Pizza</h1>
-                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Hand-tossed, wood-fired perfection</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Artisan Pizza</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Hand-tossed, wood-fired perfection</p>
                             <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
                                 Order Now <i class="fas fa-arrow-right"></i>
                             </a>
@@ -209,12 +213,12 @@
                 
                 <!-- Slide 4 - Breakfast Feast -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
-                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <div class="hero-overlay absolute inset-0 z-10"></div>
                     <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Breakfast Feast" class="w-full h-full object-cover">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Breakfast Feast</h1>
-                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Start your day right with our delicious breakfast spread. Served from 7am.</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Breakfast Feast</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Start your day right with our delicious breakfast spread. Served from 7am.</p>
                             <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
                                 Book Breakfast <i class="fas fa-arrow-right"></i>
                             </a>
@@ -224,19 +228,19 @@
             </div>
             
             <!-- Carousel Controls -->
-            <button id="prevBtn" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/30 transition">
+            <button id="prevBtn" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center hover:bg-black/50 transition">
                 <i class="fas fa-chevron-left text-xl"></i>
             </button>
-            <button id="nextBtn" class="carousel-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/30 transition">
+            <button id="nextBtn" class="carousel-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center hover:bg-black/50 transition">
                 <i class="fas fa-chevron-right text-xl"></i>
             </button>
             
             <!-- Dots Indicator -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
-                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="0"></div>
-                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="1"></div>
-                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="2"></div>
-                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="3"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="0"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="1"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="2"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="3"></div>
             </div>
         </div>
     </section>
@@ -353,7 +357,7 @@
             </div>
         </section>
 
-        <!-- Services Section - Updated for Parties and Functions -->
+        <!-- Services Section - Parties and Functions -->
         <section id="services" class="py-24 bg-cream">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="text-center mb-16">
@@ -453,6 +457,16 @@
                             
                             <div class="flex items-center gap-4">
                                 <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-envelope text-maroon"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Email</p>
+                                    <p class="text-gray-600">iamonenjb@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
                                     <i class="fas fa-map-marker-alt text-maroon"></i>
                                 </div>
                                 <div>
@@ -470,16 +484,6 @@
                                     <p class="text-gray-600">Monday - Sunday: 7:00am - 8:30pm</p>
                                 </div>
                             </div>
-                            
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
-                                    <i class="fab fa-whatsapp text-maroon"></i>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-900">WhatsApp Order</p>
-                                    <p class="text-gray-600">+256 780304392 — Order directly on WhatsApp</p>
-                                </div>
-                            </div>
                         </div>
                         
                         <!-- Social Links -->
@@ -490,29 +494,29 @@
                             <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
                                 <i class="fab fa-instagram text-maroon hover:text-white"></i>
                             </a>
-                            <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
+                            <a href="https://wa.me/256780304392" target="_blank" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
                                 <i class="fab fa-whatsapp text-maroon hover:text-white"></i>
                             </a>
                         </div>
                     </div>
                     
-                    <!-- Contact Form -->
+                    <!-- Contact Form - Submits to Email and WhatsApp -->
                     <div class="bg-cream rounded-2xl p-8 shadow-xl">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Make a Reservation</h3>
                         <form id="reservationForm" action="#" method="POST">
                             <div class="grid gap-4">
                                 <div>
-                                    <input type="text" placeholder="Full Name *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                    <input type="text" id="fullName" placeholder="Full Name *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
                                 </div>
                                 <div>
-                                    <input type="email" placeholder="Email Address *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                    <input type="email" id="email" placeholder="Email Address *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
                                 </div>
                                 <div>
-                                    <input type="tel" placeholder="Phone Number *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                    <input type="tel" id="phone" placeholder="Phone Number *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <input type="date" placeholder="Date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
-                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <input type="date" id="date" placeholder="Date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <select id="guests" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
                                         <option>2 People</option>
                                         <option>4 People</option>
                                         <option>6 People</option>
@@ -521,14 +525,14 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <select id="timeSlot" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
                                         <option>Breakfast (7am - 11am)</option>
                                         <option>Lunch (12pm - 4pm)</option>
                                         <option>Dinner (5pm - 8:30pm)</option>
                                     </select>
                                 </div>
                                 <div>
-                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <select id="eventType" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
                                         <option>Regular Dining</option>
                                         <option>Birthday Party</option>
                                         <option>Corporate Event</option>
@@ -537,7 +541,7 @@
                                     </select>
                                 </div>
                                 <div>
-                                    <textarea rows="3" placeholder="Special Requests (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white"></textarea>
+                                    <textarea id="message" rows="3" placeholder="Special Requests (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white"></textarea>
                                 </div>
                                 <button type="submit" class="bg-maroon hover:bg-maroon-dark text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
                                     <i class="fas fa-calendar-check"></i>
@@ -545,7 +549,7 @@
                                 </button>
                             </div>
                         </form>
-                        <p class="text-xs text-gray-500 text-center mt-4">We'll confirm your reservation within 2 hours</p>
+                        <p class="text-xs text-gray-500 text-center mt-4">We'll confirm your reservation within 2 hours via WhatsApp or email</p>
                     </div>
                 </div>
             </div>
@@ -564,7 +568,7 @@
                         <span class="font-bold text-white ml-2">Folks & Roses</span>
                     </div>
                     <p class="text-sm">Where Friends Meet and Dine</p>
-                    <p class="text-xs text-gray-600 mt-2">© 2025 Folks & Roses. All rights reserved.</p>
+                    <p class="text-xs text-gray-600 mt-2">© 2026 Folks & Roses. All rights reserved.</p>
                 </div>
                 <div>
                     <h4 class="text-white font-semibold mb-3">Quick Links</h4>
@@ -590,6 +594,7 @@
                         <li>Mutaasa City, Kasangati</li>
                         <li class="mt-2">📞 +256 780304392</li>
                         <li>📞 +256 700138881</li>
+                        <li>✉️ iamonenjb@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -683,13 +688,66 @@
         
         showSlide(0);
         
-        // Form submission
+        // Form submission - Sends to Email and WhatsApp
         const reservationForm = document.getElementById('reservationForm');
         if(reservationForm) {
             reservationForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                alert('Thank you for your reservation request! We will confirm your booking within 2 hours via WhatsApp or phone call.');
-                this.reset();
+                
+                // Get form values
+                const fullName = document.getElementById('fullName').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const date = document.getElementById('date').value;
+                const guests = document.getElementById('guests').value;
+                const timeSlot = document.getElementById('timeSlot').value;
+                const eventType = document.getElementById('eventType').value;
+                const message = document.getElementById('message').value;
+                
+                // Format message for WhatsApp
+                const whatsappMessage = `Hello Folks & Roses! I would like to make a reservation:
+                
+Name: ${fullName}
+Email: ${email}
+Phone: ${phone}
+Date: ${date}
+Guests: ${guests}
+Time: ${timeSlot}
+Event Type: ${eventType}
+Special Requests: ${message || "None"}
+
+Please confirm my reservation. Thank you!`;
+                
+                // Format message for Email
+                const emailSubject = `Reservation Request - ${fullName}`;
+                const emailBody = `New Reservation Request:
+                
+Name: ${fullName}
+Email: ${email}
+Phone: ${phone}
+Date: ${date}
+Number of Guests: ${guests}
+Preferred Time: ${timeSlot}
+Event Type: ${eventType}
+Special Requests: ${message || "None"}
+                
+Please confirm this reservation within 2 hours.`;
+                
+                // Open WhatsApp with the message
+                const whatsappUrl = `https://wa.me/256780304392?text=${encodeURIComponent(whatsappMessage)}`;
+                
+                // Open email client with pre-filled message
+                const mailtoUrl = `mailto:iamonenjb@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                
+                // Open both WhatsApp and Email in new windows
+                window.open(whatsappUrl, '_blank');
+                window.open(mailtoUrl, '_blank');
+                
+                // Show success message
+                alert('Thank you for your reservation request! We have opened WhatsApp and email for you. Please send the message to complete your reservation.');
+                
+                // Optionally reset the form
+                // this.reset();
             });
         }
     </script>
