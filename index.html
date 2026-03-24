@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Folks & Roses Restaurant | Where Friends Meet and Dine</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Folks & Roses Restaurant in Kasangati, Uganda. Enjoy a unique dining experience with friends and family. Open daily 7:00am to 8:30pm. Perfect for gatherings, celebrations, and delicious meals.">
+    <meta name="keywords" content="restaurant, Kasangati, Uganda, dining, friends, family, breakfast, lunch, dinner, cocktails">
+    <meta name="author" content="Folks & Roses">
+    
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'maroon': '#800020',
+                        'maroon-light': '#9d2a4a',
+                        'maroon-dark': '#5a0016',
+                        'cream': '#fef7e8',
+                        'gold': '#d4af37',
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif'],
+                        'display': ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                    },
+                },
+            },
+        }
+    </script>
+    
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        .font-display {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-pattern {
+            background: linear-gradient(135deg, rgba(128, 0, 32, 0.85) 0%, rgba(90, 0, 22, 0.9) 100%);
+        }
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+        .menu-card {
+            transition: all 0.3s ease;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -12px rgba(0, 0, 0, 0.2);
+        }
+        .gold-text {
+            color: #d4af37;
+        }
+        .border-gold {
+            border-color: #d4af37;
+        }
+        .bg-maroon {
+            background-color: #800020;
+        }
+        .text-maroon {
+            color: #800020;
+        }
+        .hover\:bg-maroon-dark:hover {
+            background-color: #5a0016;
+        }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- Navigation -->
+    <header class="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100">
+        <nav class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center shadow-md">
+                    <i class="fas fa-rose text-white text-lg"></i>
+                </div>
+                <div class="ml-3">
+                    <span class="font-bold text-xl tracking-tight text-gray-800">Folks & <span class="text-maroon">Roses</span></span>
+                    <p class="text-xs text-gray-500 -mt-1">Where Friends Meet and Dine</p>
+                </div>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#home" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Home</a>
+                <a href="#about" class="text-sm font-medium text-gray-700 hover:text-maroon transition">About</a>
+                <a href="#menu" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Menu</a>
+                <a href="#services" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Services</a>
+                <a href="#contact" class="bg-maroon text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-maroon-dark transition">
+                    Reserve a Table
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2">
+                <i class="fas fa-bars text-gray-700 text-xl"></i>
+            </button>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-4 px-6 flex flex-col gap-3 shadow-lg">
+            <a href="#home" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Home</a>
+            <a href="#about" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">About</a>
+            <a href="#menu" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Menu</a>
+            <a href="#services" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Services</a>
+            <a href="#contact" class="bg-maroon text-white px-5 py-2 rounded-full text-sm font-semibold text-center">Reserve a Table</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-20 flex items-center">
+        <div class="absolute inset-0">
+            <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Restaurant interior" class="w-full h-full object-cover">
+            <div class="hero-pattern absolute inset-0"></div>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-6 md:px-8 py-24 text-center text-white">
+            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium border border-white/30 mb-6">
+                <i class="fas fa-rose text-sm"></i>
+                <span>Welcome to Folks & Roses</span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
+                Where Friends<br>
+                <span class="gold-text">Meet and Dine</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
+                Experience a unique dining journey in the heart of Kasangati. Perfect for gatherings, celebrations, and unforgettable moments.
+            </p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
+                    <i class="fas fa-calendar-alt"></i>
+                    Book a Table
+                </a>
+                <a href="#menu" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white font-medium px-7 py-3 rounded-full transition">
+                    <i class="fas fa-utensils"></i>
+                    View Menu
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+            <a href="#about" class="text-white/70 hover:text-white">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <main>
+        <!-- About Section -->
+        <section id="about" class="py-24 bg-cream">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Our Story</span>
+                        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4 mb-6">A Place Where <br>Friends Become Family</h2>
+                        <p class="text-gray-600 mb-6 leading-relaxed">At Folks & Roses, we believe that great food is best shared with great company. Our restaurant is designed to be your home away from home—a warm, inviting space where friends gather, stories are shared, and memories are made.</p>
+                        <p class="text-gray-600 mb-8 leading-relaxed">With an array of cuisines from around the world, we take you on a culinary journey. From hearty breakfasts to elegant dinners, every dish is crafted with passion and the finest ingredients.</p>
+                        
+                        <div class="flex flex-wrap gap-6">
+                            <div>
+                                <div class="text-3xl font-bold text-maroon">7:00am</div>
+                                <div class="text-sm text-gray-500">Opening Hour</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-maroon">8:30pm</div>
+                                <div class="text-sm text-gray-500">Closing Hour</div>
+                            </div>
+                            <div>
+                                <div class="text-3xl font-bold text-maroon">7 Days</div>
+                                <div class="text-sm text-gray-500">A Week</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <img src="https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&w=600&h=500&fit=crop" alt="Restaurant ambiance" class="rounded-2xl shadow-2xl w-full">
+                        <div class="absolute -bottom-6 -left-6 bg-maroon text-white p-4 rounded-xl shadow-lg">
+                            <i class="fas fa-rose text-3xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Preview Section -->
+        <section id="menu" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Our Menu</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4">Made with Love,<br>Served with Joy</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">Discover our carefully crafted dishes, blending local flavors with international cuisine</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Breakfast -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Breakfast" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">Breakfast</h3>
+                                <i class="fas fa-mug-hot text-maroon"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Start your day with our signature breakfast platters, fresh pastries, and aromatic coffee.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-maroon font-bold">7:00am - 11:00am</span>
+                                <a href="#contact" class="text-sm text-maroon hover:underline">Order Now →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Lunch -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Lunch" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">Lunch</h3>
+                                <i class="fas fa-utensils text-maroon"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Hearty lunch specials featuring local favorites and international classics.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-maroon font-bold">12:00pm - 4:00pm</span>
+                                <a href="#contact" class="text-sm text-maroon hover:underline">Order Now →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dinner -->
+                    <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+                        <div class="h-48 overflow-hidden">
+                            <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Dinner" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-xl font-bold text-gray-900">Dinner</h3>
+                                <i class="fas fa-wine-glass-alt text-maroon"></i>
+                            </div>
+                            <p class="text-gray-600 text-sm mb-4">Elegant evening dining with gourmet dishes and fine wines in a cozy atmosphere.</p>
+                            <div class="flex items-center justify-between">
+                                <span class="text-maroon font-bold">5:00pm - 8:30pm</span>
+                                <a href="#contact" class="text-sm text-maroon hover:underline">Order Now →</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services / Features Section -->
+        <section id="services" class="py-24 bg-cream">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-maroon font-semibold text-sm uppercase tracking-wider">What We Offer</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4">More Than Just a Meal</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">Experience exceptional service and unforgettable moments</p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-utensils text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Family Platter</h3>
+                        <p class="text-gray-600 text-sm">Perfect for sharing with loved ones. Our signature platters bring everyone together.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-champagne-glasses text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Private Events</h3>
+                        <p class="text-gray-600 text-sm">Celebrate your special moments with us. Birthdays, anniversaries, and more.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-truck text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Takeaway & Delivery</h3>
+                        <p class="text-gray-600 text-sm">Enjoy our delicious meals at home. Quick and reliable delivery service.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-music text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Live Music</h3>
+                        <p class="text-gray-600 text-sm">Enjoy live performances every weekend. The perfect ambiance for your evening.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Section -->
+        <section class="py-20 bg-maroon">
+            <div class="max-w-4xl mx-auto px-6 md:px-8 text-center text-white">
+                <i class="fas fa-quote-left text-4xl text-gold mb-6 opacity-70"></i>
+                <p class="text-2xl md:text-3xl font-display italic mb-6">"There is no love sincerer than the love of food, shared with friends."</p>
+                <p class="text-gold font-medium">— Folks & Roses Family</p>
+            </div>
+        </section>
+
+        <!-- Contact & Location Section -->
+        <section id="contact" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="grid lg:grid-cols-2 gap-12">
+                    <!-- Contact Info -->
+                    <div>
+                        <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
+                        <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4 mb-6">Reserve Your Table</h2>
+                        <p class="text-gray-600 mb-8">Book your table today and experience the warmth of Folks & Roses. Walk-ins are also welcome!</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-phone-alt text-maroon"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Call / WhatsApp</p>
+                                    <p class="text-gray-600">+256 780304392 <span class="text-sm text-gray-400">(WhatsApp)</span><br>+256 700138881</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-maroon"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Location</p>
+                                    <p class="text-gray-600">Room BU54, 2nd Floor, Mutaasa City, Kasangati</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
+                                    <i class="fas fa-clock text-maroon"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Opening Hours</p>
+                                    <p class="text-gray-600">Monday - Sunday: 7:00am - 8:30pm</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-maroon/10 rounded-full flex items-center justify-center">
+                                    <i class="fab fa-whatsapp text-maroon"></i>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-900">WhatsApp Order</p>
+                                    <p class="text-gray-600">+256 780304392 — Order directly on WhatsApp</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Social Links -->
+                        <div class="flex gap-4 mt-8">
+                            <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
+                                <i class="fab fa-facebook-f text-maroon hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
+                                <i class="fab fa-instagram text-maroon hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
+                                <i class="fab fa-whatsapp text-maroon hover:text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="bg-cream rounded-2xl p-8 shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Make a Reservation</h3>
+                        <form id="reservationForm" action="#" method="POST">
+                            <div class="grid gap-4">
+                                <div>
+                                    <input type="text" placeholder="Full Name *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                </div>
+                                <div>
+                                    <input type="email" placeholder="Email Address *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                </div>
+                                <div>
+                                    <input type="tel" placeholder="Phone Number *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <input type="date" placeholder="Date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                        <option>2 People</option>
+                                        <option>4 People</option>
+                                        <option>6 People</option>
+                                        <option>8 People</option>
+                                        <option>10+ People</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                        <option>Breakfast (7am - 11am)</option>
+                                        <option>Lunch (12pm - 4pm)</option>
+                                        <option>Dinner (5pm - 8:30pm)</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <textarea rows="3" placeholder="Special Requests (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white"></textarea>
+                                </div>
+                                <button type="submit" class="bg-maroon hover:bg-maroon-dark text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
+                                    <i class="fas fa-calendar-check"></i>
+                                    Reserve Table
+                                </button>
+                            </div>
+                        </form>
+                        <p class="text-xs text-gray-500 text-center mt-4">We'll confirm your reservation within 2 hours</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12">
+        <div class="max-w-7xl mx-auto px-6 md:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 bg-maroon rounded-full flex items-center justify-center">
+                            <i class="fas fa-rose text-white text-sm"></i>
+                        </div>
+                        <span class="font-bold text-white ml-2">Folks & Roses</span>
+                    </div>
+                    <p class="text-sm">Where Friends Meet and Dine</p>
+                    <p class="text-xs text-gray-600 mt-2">© 2025 Folks & Roses. All rights reserved.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#home" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#menu" class="hover:text-white transition">Menu</a></li>
+                        <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Opening Hours</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Monday - Sunday</li>
+                        <li class="text-white">7:00am - 8:30pm</li>
+                        <li class="mt-2">Kitchen closes at 8:00pm</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-3">Visit Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li>Room BU54, 2nd Floor</li>
+                        <li>Mutaasa City, Kasangati</li>
+                        <li class="mt-2">📞 +256 780304392</li>
+                        <li>📞 +256 700138881</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-center text-sm">
+                <p>📍 Located on the 2nd Floor, Mutaasa City, Kasangati — Easy access from Kampala</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        if(mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu?.querySelectorAll('a');
+        mobileLinks?.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Form submission
+        const reservationForm = document.getElementById('reservationForm');
+        if(reservationForm) {
+            reservationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Thank you for your reservation request! We will confirm your booking within 2 hours via WhatsApp or phone call.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
