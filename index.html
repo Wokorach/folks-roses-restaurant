@@ -6,8 +6,8 @@
     <title>Folks & Roses Restaurant | Where Friends Meet and Dine</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Folks & Roses Restaurant in Kasangati, Uganda. Enjoy a unique dining experience with friends and family. Open daily 7:00am to 8:30pm. Perfect for gatherings, celebrations, and delicious meals.">
-    <meta name="keywords" content="restaurant, Kasangati, Uganda, dining, friends, family, breakfast, lunch, dinner, cocktails">
+    <meta name="description" content="Folks & Roses Restaurant in Kasangati, Uganda. Experience exquisite dining with over 10 years of culinary excellence. Perfect for parties, functions, and gatherings.">
+    <meta name="keywords" content="restaurant, Kasangati, Uganda, dining, friends, family, breakfast, lunch, dinner, parties, events, catering">
     <meta name="author" content="Folks & Roses">
     
     <!-- Google Fonts + Font Awesome -->
@@ -85,9 +85,6 @@
         .gold-text {
             color: #d4af37;
         }
-        .border-gold {
-            border-color: #d4af37;
-        }
         .bg-maroon {
             background-color: #800020;
         }
@@ -96,6 +93,25 @@
         }
         .hover\:bg-maroon-dark:hover {
             background-color: #5a0016;
+        }
+        
+        /* Carousel Styles */
+        .carousel-slide {
+            transition: opacity 0.5s ease-in-out;
+        }
+        .carousel-btn {
+            transition: all 0.3s ease;
+        }
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        .dot {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .dot:hover {
+            transform: scale(1.2);
         }
     </style>
 </head>
@@ -142,55 +158,108 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="relative min-h-screen pt-20 flex items-center">
-        <div class="absolute inset-0">
-            <img src="https://images.pexels.com/photos/260922/pexels-photo-260922.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Restaurant interior" class="w-full h-full object-cover">
-            <div class="hero-pattern absolute inset-0"></div>
-        </div>
-        
-        <div class="relative max-w-7xl mx-auto px-6 md:px-8 py-24 text-center text-white">
-            <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-medium border border-white/30 mb-6">
-                <i class="fas fa-rose text-sm"></i>
-                <span>Welcome to Folks & Roses</span>
+    <!-- Hero Section with Carousel -->
+    <section id="home" class="pt-20 relative">
+        <div class="relative h-screen overflow-hidden">
+            <div id="carouselContainer" class="relative w-full h-full">
+                <!-- Slide 1 - Gourmet Burger -->
+                <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <img src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Gourmet Burger" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
+                        <div class="max-w-4xl px-6">
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Welcome to Folks & Roses</h1>
+                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Where Friends Meet and Dine</p>
+                            <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
+                                Reserve a Table <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 2 - Chef's Special -->
+                <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <img src="https://images.pexels.com/photos/1321224/pexels-photo-1321224.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Chef's Special" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
+                        <div class="max-w-4xl px-6">
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Chef's Special</h1>
+                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Exquisite dishes crafted by our award-winning chef</p>
+                            <a href="#menu" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
+                                View Menu <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 3 - Artisan Pizza -->
+                <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <img src="https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Artisan Pizza" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
+                        <div class="max-w-4xl px-6">
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Artisan Pizza</h1>
+                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Hand-tossed, wood-fired perfection</p>
+                            <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
+                                Order Now <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Slide 4 - Breakfast Feast -->
+                <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
+                    <div class="hero-pattern absolute inset-0 z-10"></div>
+                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Breakfast Feast" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
+                        <div class="max-w-4xl px-6">
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6">Breakfast Feast</h1>
+                            <p class="text-xl md:text-2xl text-gray-200 mb-8">Start your day right with our delicious breakfast spread. Served from 7am.</p>
+                            <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
+                                Book Breakfast <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <h1 class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight">
-                Where Friends<br>
-                <span class="gold-text">Meet and Dine</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-2xl mx-auto">
-                Experience a unique dining journey in the heart of Kasangati. Perfect for gatherings, celebrations, and unforgettable moments.
-            </p>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
-                    <i class="fas fa-calendar-alt"></i>
-                    Book a Table
-                </a>
-                <a href="#menu" class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/40 text-white font-medium px-7 py-3 rounded-full transition">
-                    <i class="fas fa-utensils"></i>
-                    View Menu
-                </a>
+            
+            <!-- Carousel Controls -->
+            <button id="prevBtn" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/30 transition">
+                <i class="fas fa-chevron-left text-xl"></i>
+            </button>
+            <button id="nextBtn" class="carousel-btn absolute right-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm text-white flex items-center justify-center hover:bg-white/30 transition">
+                <i class="fas fa-chevron-right text-xl"></i>
+            </button>
+            
+            <!-- Dots Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="0"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="1"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="2"></div>
+                <div class="dot w-3 h-3 rounded-full bg-white/50 transition-all" data-index="3"></div>
             </div>
-        </div>
-        
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-            <a href="#about" class="text-white/70 hover:text-white">
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </a>
         </div>
     </section>
 
     <main>
-        <!-- About Section -->
+        <!-- About Section with Chef Information -->
         <section id="about" class="py-24 bg-cream">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
                         <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Our Story</span>
                         <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4 mb-6">A Place Where <br>Friends Become Family</h2>
-                        <p class="text-gray-600 mb-6 leading-relaxed">At Folks & Roses, we believe that great food is best shared with great company. Our restaurant is designed to be your home away from home—a warm, inviting space where friends gather, stories are shared, and memories are made.</p>
-                        <p class="text-gray-600 mb-8 leading-relaxed">With an array of cuisines from around the world, we take you on a culinary journey. From hearty breakfasts to elegant dinners, every dish is crafted with passion and the finest ingredients.</p>
+                        <p class="text-gray-600 mb-4 leading-relaxed">At Folks & Roses, we believe that great food is best shared with great company. Our restaurant is designed to be your home away from home—a warm, inviting space where friends gather, stories are shared, and memories are made.</p>
+                        <p class="text-gray-600 mb-6 leading-relaxed">With an array of cuisines from around the world, we take you on a culinary journey. From hearty breakfasts to elegant dinners, every dish is crafted with passion and the finest ingredients.</p>
+                        
+                        <!-- Chef Highlight -->
+                        <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-gold mb-6">
+                            <div class="flex items-center gap-3 mb-3">
+                                <i class="fas fa-user-chef text-3xl text-maroon"></i>
+                                <h3 class="text-xl font-bold text-gray-900">Meet Our Master Chef</h3>
+                            </div>
+                            <p class="text-gray-700 leading-relaxed">With over <strong class="text-maroon">10 years of culinary excellence</strong>, our head chef has served distinguished national and international guests, bringing world-class dining experience to Kampala. From state banquets to private celebrations, every dish reflects expertise, passion, and attention to detail.</p>
+                        </div>
                         
                         <div class="flex flex-wrap gap-6">
                             <div>
@@ -208,7 +277,7 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <img src="https://images.pexels.com/photos/1183434/pexels-photo-1183434.jpeg?auto=compress&cs=tinysrgb&w=600&h=500&fit=crop" alt="Restaurant ambiance" class="rounded-2xl shadow-2xl w-full">
+                        <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600&h=500&fit=crop" alt="Chef preparing dish" class="rounded-2xl shadow-2xl w-full">
                         <div class="absolute -bottom-6 -left-6 bg-maroon text-white p-4 rounded-xl shadow-lg">
                             <i class="fas fa-rose text-3xl"></i>
                         </div>
@@ -284,16 +353,56 @@
             </div>
         </section>
 
-        <!-- Services / Features Section -->
+        <!-- Services Section - Updated for Parties and Functions -->
         <section id="services" class="py-24 bg-cream">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="text-center mb-16">
                     <span class="text-maroon font-semibold text-sm uppercase tracking-wider">What We Offer</span>
-                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4">More Than Just a Meal</h2>
-                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">Experience exceptional service and unforgettable moments</p>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4">Perfect for Every Occasion</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">From intimate gatherings to grand celebrations, we've got you covered</p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-birthday-cake text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Birthday Parties</h3>
+                        <p class="text-gray-600 text-sm">Celebrate your special day with us. Custom cakes, decorations, and personalized menus available.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-ring text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Weddings & Engagements</h3>
+                        <p class="text-gray-600 text-sm">Make your big day unforgettable with our elegant wedding packages and exquisite catering.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-briefcase text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Corporate Events</h3>
+                        <p class="text-gray-600 text-sm">Professional setup for business meetings, conferences, and corporate gatherings.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-champagne-glasses text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Private Functions</h3>
+                        <p class="text-gray-600 text-sm">Exclusive space for family reunions, anniversaries, and private celebrations.</p>
+                    </div>
+                    
+                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
+                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-truck text-2xl text-maroon"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Catering Services</h3>
+                        <p class="text-gray-600 text-sm">Professional catering for events of all sizes. Same great taste, anywhere you need it.</p>
+                    </div>
+                    
                     <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
                         <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
                             <i class="fas fa-utensils text-2xl text-maroon"></i>
@@ -301,30 +410,13 @@
                         <h3 class="text-lg font-bold text-gray-900 mb-2">Family Platter</h3>
                         <p class="text-gray-600 text-sm">Perfect for sharing with loved ones. Our signature platters bring everyone together.</p>
                     </div>
-                    
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
-                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-champagne-glasses text-2xl text-maroon"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Private Events</h3>
-                        <p class="text-gray-600 text-sm">Celebrate your special moments with us. Birthdays, anniversaries, and more.</p>
-                    </div>
-                    
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
-                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-truck text-2xl text-maroon"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Takeaway & Delivery</h3>
-                        <p class="text-gray-600 text-sm">Enjoy our delicious meals at home. Quick and reliable delivery service.</p>
-                    </div>
-                    
-                    <div class="bg-white rounded-2xl p-6 text-center shadow-md service-card">
-                        <div class="w-16 h-16 bg-maroon/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-music text-2xl text-maroon"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-2">Live Music</h3>
-                        <p class="text-gray-600 text-sm">Enjoy live performances every weekend. The perfect ambiance for your evening.</p>
-                    </div>
+                </div>
+                
+                <!-- Special Chef Note -->
+                <div class="mt-12 bg-maroon/5 rounded-2xl p-6 text-center border border-maroon/20">
+                    <i class="fas fa-star text-gold text-2xl mb-3"></i>
+                    <p class="text-gray-700 max-w-2xl mx-auto">"With over a decade of experience serving distinguished national and international guests, our culinary team brings world-class expertise to every dish we create."</p>
+                    <p class="text-maroon font-semibold mt-3">— Executive Chef, Folks & Roses</p>
                 </div>
             </div>
         </section>
@@ -436,6 +528,15 @@
                                     </select>
                                 </div>
                                 <div>
+                                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                        <option>Regular Dining</option>
+                                        <option>Birthday Party</option>
+                                        <option>Corporate Event</option>
+                                        <option>Private Function</option>
+                                        <option>Wedding/Engagement</option>
+                                    </select>
+                                </div>
+                                <div>
                                     <textarea rows="3" placeholder="Special Requests (optional)" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white"></textarea>
                                 </div>
                                 <button type="submit" class="bg-maroon hover:bg-maroon-dark text-white font-semibold py-3 rounded-lg transition flex items-center justify-center gap-2">
@@ -526,6 +627,61 @@
                 }
             });
         });
+        
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.dot');
+        const totalSlides = slides.length;
+        
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.opacity = i === index ? '1' : '0';
+            });
+            dots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('bg-white');
+                    dot.classList.remove('bg-white/50');
+                } else {
+                    dot.classList.remove('bg-white');
+                    dot.classList.add('bg-white/50');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+        
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        if(nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if(prevBtn) prevBtn.addEventListener('click', prevSlide);
+        
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+        
+        // Auto slide every 5 seconds
+        let autoSlideInterval = setInterval(nextSlide, 5000);
+        const carouselContainer = document.getElementById('carouselContainer');
+        if(carouselContainer) {
+            carouselContainer.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+            carouselContainer.addEventListener('mouseleave', () => {
+                autoSlideInterval = setInterval(nextSlide, 5000);
+            });
+        }
+        
+        showSlide(0);
         
         // Form submission
         const reservationForm = document.getElementById('reservationForm');
