@@ -66,7 +66,6 @@
         .font-display {
             font-family: 'Playfair Display', serif;
         }
-        /* Lighter overlay for better image visibility */
         .hero-overlay {
             background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%);
         }
@@ -99,7 +98,7 @@
             background-color: #5a0016;
         }
         
-        /* Carousel Styles */
+        /* Hero Carousel Styles */
         .carousel-slide {
             transition: opacity 0.5s ease-in-out;
         }
@@ -117,6 +116,119 @@
         .dot:hover {
             transform: scale(1.2);
         }
+        
+        /* Gallery Carousel Styles */
+        .gallery-carousel-container {
+            position: relative;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+        .gallery-carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            gap: 24px;
+        }
+        .gallery-carousel-slide {
+            flex: 0 0 calc(50% - 12px);
+            min-width: calc(50% - 12px);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .gallery-carousel-slide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-carousel-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+        .gallery-carousel-slide:hover img {
+            transform: scale(1.03);
+        }
+        
+        @media (max-width: 768px) {
+            .gallery-carousel-slide {
+                flex: 0 0 calc(100% - 0px);
+                min-width: calc(100% - 0px);
+            }
+            .gallery-carousel-slide img {
+                height: 250px;
+            }
+        }
+        
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 40px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .lightbox-close:hover {
+            color: #d4af37;
+        }
+        .lightbox-prev, .lightbox-next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 50px;
+            color: white;
+            cursor: pointer;
+            padding: 20px;
+            transition: 0.3s;
+        }
+        .lightbox-prev { left: 20px; }
+        .lightbox-next { right: 20px; }
+        .lightbox-prev:hover, .lightbox-next:hover {
+            color: #d4af37;
+        }
+        .gallery-carousel-btn {
+            transition: all 0.3s ease;
+        }
+        .gallery-carousel-btn:hover {
+            background: #800020;
+            color: white;
+        }
+        @media (max-width: 768px) {
+            .lightbox-prev, .lightbox-next {
+                font-size: 30px;
+                padding: 10px;
+            }
+            .lightbox-close {
+                font-size: 30px;
+                top: 10px;
+                right: 15px;
+            }
+        }
     </style>
 </head>
 <body class="bg-white">
@@ -124,7 +236,6 @@
     <!-- Navigation -->
     <header class="fixed top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-md border-b border-gray-100">
         <nav class="max-w-7xl mx-auto px-6 md:px-8 py-4 flex items-center justify-between">
-            <!-- Logo -->
             <div class="flex items-center">
                 <div class="w-10 h-10 bg-maroon rounded-full flex items-center justify-center shadow-md">
                     <i class="fas fa-rose text-white text-lg"></i>
@@ -135,41 +246,40 @@
                 </div>
             </div>
             
-            <!-- Desktop Navigation -->
             <div class="hidden md:flex items-center gap-8">
                 <a href="#home" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Home</a>
                 <a href="#about" class="text-sm font-medium text-gray-700 hover:text-maroon transition">About</a>
                 <a href="#menu" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Menu</a>
                 <a href="#services" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Services</a>
+                <a href="#gallery" class="text-sm font-medium text-gray-700 hover:text-maroon transition">Gallery</a>
                 <a href="#contact" class="bg-maroon text-white px-5 py-2 rounded-full text-sm font-semibold shadow-md hover:bg-maroon-dark transition">
                     Reserve a Table
                 </a>
             </div>
             
-            <!-- Mobile Menu Button -->
             <button id="mobileMenuBtn" class="md:hidden p-2">
                 <i class="fas fa-bars text-gray-700 text-xl"></i>
             </button>
         </nav>
         
-        <!-- Mobile Menu -->
         <div id="mobileMenu" class="hidden md:hidden bg-white border-t border-gray-200 py-4 px-6 flex flex-col gap-3 shadow-lg">
             <a href="#home" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Home</a>
             <a href="#about" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">About</a>
             <a href="#menu" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Menu</a>
             <a href="#services" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Services</a>
+            <a href="#gallery" class="text-sm font-medium text-gray-700 hover:text-maroon py-2">Gallery</a>
             <a href="#contact" class="bg-maroon text-white px-5 py-2 rounded-full text-sm font-semibold text-center">Reserve a Table</a>
         </div>
     </header>
 
-    <!-- Hero Section with Carousel - Lighter Overlay -->
+    <!-- Hero Section with Carousel - Using Local Images folks1-folks4 -->
     <section id="home" class="pt-20 relative">
         <div class="relative h-screen overflow-hidden">
             <div id="carouselContainer" class="relative w-full h-full">
-                <!-- Slide 1 - Gourmet Burger -->
+                <!-- Slide 1 - folks1 -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="hero-overlay absolute inset-0 z-10"></div>
-                    <img src="https://images.pexels.com/photos/2983101/pexels-photo-2983101.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Gourmet Burger" class="w-full h-full object-cover">
+                    <img id="heroImg1" src="assets/images/folks1.jpg" alt="Folks & Roses Interior" class="w-full h-full object-cover" onerror="this.onerror=null; if(this.src.indexOf('.jpg')>-1){this.src='assets/images/folks1.jpeg'}else if(this.src.indexOf('.jpeg')>-1){this.src='assets/images/folks1.png'}">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
                             <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Welcome to Folks & Roses</h1>
@@ -181,10 +291,10 @@
                     </div>
                 </div>
                 
-                <!-- Slide 2 - Chef's Special -->
+                <!-- Slide 2 - folks2 -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="hero-overlay absolute inset-0 z-10"></div>
-                    <img src="https://images.pexels.com/photos/1321224/pexels-photo-1321224.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Chef's Special" class="w-full h-full object-cover">
+                    <img src="assets/images/folks2.jpg" alt="Delicious Meal" class="w-full h-full object-cover" onerror="this.onerror=null; if(this.src.indexOf('.jpg')>-1){this.src='assets/images/folks2.jpeg'}else if(this.src.indexOf('.jpeg')>-1){this.src='assets/images/folks2.png'}">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
                             <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Chef's Special</h1>
@@ -196,14 +306,14 @@
                     </div>
                 </div>
                 
-                <!-- Slide 3 - Artisan Pizza -->
+                <!-- Slide 3 - folks3 -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="hero-overlay absolute inset-0 z-10"></div>
-                    <img src="https://images.pexels.com/photos/1653877/pexels-photo-1653877.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Artisan Pizza" class="w-full h-full object-cover">
+                    <img src="assets/images/folks3.jpg" alt="Dining Experience" class="w-full h-full object-cover" onerror="this.onerror=null; if(this.src.indexOf('.jpg')>-1){this.src='assets/images/folks3.jpeg'}else if(this.src.indexOf('.jpeg')>-1){this.src='assets/images/folks3.png'}">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Artisan Pizza</h1>
-                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Hand-tossed, wood-fired perfection</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Artisan Cuisine</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Handcrafted dishes made with love</p>
                             <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
                                 Order Now <i class="fas fa-arrow-right"></i>
                             </a>
@@ -211,23 +321,22 @@
                     </div>
                 </div>
                 
-                <!-- Slide 4 - Breakfast Feast -->
+                <!-- Slide 4 - folks4 -->
                 <div class="carousel-slide absolute inset-0 w-full h-full opacity-0 transition-opacity duration-1000">
                     <div class="hero-overlay absolute inset-0 z-10"></div>
-                    <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop" alt="Breakfast Feast" class="w-full h-full object-cover">
+                    <img src="assets/images/folks4.jpg" alt="Restaurant Ambiance" class="w-full h-full object-cover" onerror="this.onerror=null; if(this.src.indexOf('.jpg')>-1){this.src='assets/images/folks4.jpeg'}else if(this.src.indexOf('.jpeg')>-1){this.src='assets/images/folks4.png'}">
                     <div class="absolute inset-0 z-20 flex items-center justify-center text-center">
                         <div class="max-w-4xl px-6">
-                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Breakfast Feast</h1>
-                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Start your day right with our delicious breakfast spread. Served from 7am.</p>
+                            <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-6 drop-shadow-lg">Perfect Ambiance</h1>
+                            <p class="text-xl md:text-2xl text-white mb-8 drop-shadow-md">Where every meal becomes a memory</p>
                             <a href="#contact" class="inline-flex items-center gap-2 bg-gold hover:bg-amber-500 text-maroon font-bold px-8 py-3 rounded-full transition shadow-lg">
-                                Book Breakfast <i class="fas fa-arrow-right"></i>
+                                Book a Table <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Carousel Controls -->
             <button id="prevBtn" class="carousel-btn absolute left-4 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center hover:bg-black/50 transition">
                 <i class="fas fa-chevron-left text-xl"></i>
             </button>
@@ -235,7 +344,6 @@
                 <i class="fas fa-chevron-right text-xl"></i>
             </button>
             
-            <!-- Dots Indicator -->
             <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
                 <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="0"></div>
                 <div class="dot w-3 h-3 rounded-full bg-white/70 transition-all" data-index="1"></div>
@@ -246,7 +354,7 @@
     </section>
 
     <main>
-        <!-- About Section with Chef Information -->
+        <!-- About Section -->
         <section id="about" class="py-24 bg-cream">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
@@ -256,7 +364,6 @@
                         <p class="text-gray-600 mb-4 leading-relaxed">At Folks & Roses, we believe that great food is best shared with great company. Our restaurant is designed to be your home away from home—a warm, inviting space where friends gather, stories are shared, and memories are made.</p>
                         <p class="text-gray-600 mb-6 leading-relaxed">With an array of cuisines from around the world, we take you on a culinary journey. From hearty breakfasts to elegant dinners, every dish is crafted with passion and the finest ingredients.</p>
                         
-                        <!-- Chef Highlight -->
                         <div class="bg-white rounded-2xl p-6 shadow-lg border-l-4 border-gold mb-6">
                             <div class="flex items-center gap-3 mb-3">
                                 <i class="fas fa-user-chef text-3xl text-maroon"></i>
@@ -281,7 +388,7 @@
                         </div>
                     </div>
                     <div class="relative">
-                        <img src="https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=600&h=500&fit=crop" alt="Chef preparing dish" class="rounded-2xl shadow-2xl w-full">
+                        <img src="assets/images/folks5.jpg" alt="Chef preparing dish" class="rounded-2xl shadow-2xl w-full h-[400px] object-cover" onerror="this.onerror=null; this.src='assets/images/folks5.jpeg'">
                         <div class="absolute -bottom-6 -left-6 bg-maroon text-white p-4 rounded-xl shadow-lg">
                             <i class="fas fa-rose text-3xl"></i>
                         </div>
@@ -290,7 +397,7 @@
             </div>
         </section>
 
-        <!-- Menu Preview Section -->
+        <!-- Menu Preview Section - Using local images folks6-folks8 -->
         <section id="menu" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="text-center mb-16">
@@ -300,10 +407,9 @@
                 </div>
                 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Breakfast -->
                     <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                         <div class="h-48 overflow-hidden">
-                            <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Breakfast" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                            <img src="assets/images/folks6.jpg" alt="Breakfast" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300" onerror="this.onerror=null; this.src='assets/images/folks6.jpeg'">
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-2">
@@ -318,10 +424,9 @@
                         </div>
                     </div>
                     
-                    <!-- Lunch -->
                     <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                         <div class="h-48 overflow-hidden">
-                            <img src="https://images.pexels.com/photos/699953/pexels-photo-699953.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Lunch" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                            <img src="assets/images/folks7.jpg" alt="Lunch" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300" onerror="this.onerror=null; this.src='assets/images/folks7.jpeg'">
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-2">
@@ -336,10 +441,9 @@
                         </div>
                     </div>
                     
-                    <!-- Dinner -->
                     <div class="menu-card bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100">
                         <div class="h-48 overflow-hidden">
-                            <img src="https://images.pexels.com/photos/1307698/pexels-photo-1307698.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&fit=crop" alt="Dinner" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300">
+                            <img src="assets/images/folks8.jpg" alt="Dinner" class="w-full h-full object-cover transition-transform hover:scale-105 duration-300" onerror="this.onerror=null; this.src='assets/images/folks8.jpeg'">
                         </div>
                         <div class="p-6">
                             <div class="flex items-center justify-between mb-2">
@@ -357,7 +461,7 @@
             </div>
         </section>
 
-        <!-- Services Section - Parties and Functions -->
+        <!-- Services Section -->
         <section id="services" class="py-24 bg-cream">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="text-center mb-16">
@@ -416,7 +520,6 @@
                     </div>
                 </div>
                 
-                <!-- Special Chef Note -->
                 <div class="mt-12 bg-maroon/5 rounded-2xl p-6 text-center border border-maroon/20">
                     <i class="fas fa-star text-gold text-2xl mb-3"></i>
                     <p class="text-gray-700 max-w-2xl mx-auto">"With over a decade of experience serving distinguished national and international guests, our culinary team brings world-class expertise to every dish we create."</p>
@@ -424,6 +527,43 @@
                 </div>
             </div>
         </section>
+
+        <!-- GALLERY CAROUSEL SECTION - 2 images per view, auto-sliding -->
+        <section id="gallery" class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6 md:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Memories & Moments</span>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4">Our Gallery</h2>
+                    <p class="text-gray-600 max-w-2xl mx-auto mt-4">Take a glimpse into the vibrant atmosphere and delicious moments at Folks & Roses</p>
+                </div>
+                
+                <div class="gallery-carousel-container relative">
+                    <!-- Carousel Track -->
+                    <div class="gallery-carousel-track" id="galleryTrack">
+                        <!-- Images will be dynamically loaded here -->
+                    </div>
+                    
+                    <!-- Navigation Buttons -->
+                    <button id="galleryPrevBtn" class="gallery-carousel-btn absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-md text-maroon flex items-center justify-center hover:bg-maroon hover:text-white transition-all -ml-4">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="galleryNextBtn" class="gallery-carousel-btn absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white shadow-md text-maroon flex items-center justify-center hover:bg-maroon hover:text-white transition-all -mr-4">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                
+                <!-- Dots Indicator -->
+                <div class="flex justify-center gap-2 mt-8" id="galleryDots"></div>
+            </div>
+        </section>
+
+        <!-- Lightbox Modal -->
+        <div id="lightbox" class="lightbox">
+            <span class="lightbox-close">&times;</span>
+            <span class="lightbox-prev">&#10094;</span>
+            <img id="lightbox-img" src="" alt="Enlarged view">
+            <span class="lightbox-next">&#10095;</span>
+        </div>
 
         <!-- Quote Section -->
         <section class="py-20 bg-maroon">
@@ -434,11 +574,10 @@
             </div>
         </section>
 
-        <!-- Contact & Location Section -->
+        <!-- Contact Section -->
         <section id="contact" class="py-24 bg-white">
             <div class="max-w-7xl mx-auto px-6 md:px-8">
                 <div class="grid lg:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
                     <div>
                         <span class="text-maroon font-semibold text-sm uppercase tracking-wider">Get in Touch</span>
                         <h2 class="text-4xl md:text-5xl font-display font-bold text-gray-900 mt-4 mb-6">Reserve Your Table</h2>
@@ -486,7 +625,6 @@
                             </div>
                         </div>
                         
-                        <!-- Social Links -->
                         <div class="flex gap-4 mt-8">
                             <a href="#" class="w-10 h-10 bg-maroon/10 rounded-full flex items-center justify-center hover:bg-maroon hover:text-white transition">
                                 <i class="fab fa-facebook-f text-maroon hover:text-white"></i>
@@ -500,7 +638,6 @@
                         </div>
                     </div>
                     
-                    <!-- Contact Form - Submits to Email and WhatsApp -->
                     <div class="bg-cream rounded-2xl p-8 shadow-xl">
                         <h3 class="text-2xl font-bold text-gray-900 mb-4">Make a Reservation</h3>
                         <form id="reservationForm" action="#" method="POST">
@@ -515,7 +652,7 @@
                                     <input type="tel" id="phone" placeholder="Phone Number *" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon focus:border-transparent bg-white">
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
-                                    <input type="date" id="date" placeholder="Date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
+                                    <input type="date" id="date" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
                                     <select id="guests" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-maroon bg-white">
                                         <option>2 People</option>
                                         <option>4 People</option>
@@ -556,7 +693,6 @@
         </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-gray-900 text-gray-400 py-12">
         <div class="max-w-7xl mx-auto px-6 md:px-8">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
@@ -576,6 +712,8 @@
                         <li><a href="#home" class="hover:text-white transition">Home</a></li>
                         <li><a href="#about" class="hover:text-white transition">About</a></li>
                         <li><a href="#menu" class="hover:text-white transition">Menu</a></li>
+                        <li><a href="#services" class="hover:text-white transition">Services</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition">Gallery</a></li>
                         <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
                     </ul>
                 </div>
@@ -614,7 +752,6 @@
             });
         }
         
-        // Close mobile menu when clicking a link
         const mobileLinks = mobileMenu?.querySelectorAll('a');
         mobileLinks?.forEach(link => {
             link.addEventListener('click', () => {
@@ -622,7 +759,6 @@
             });
         });
         
-        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 const target = document.querySelector(this.getAttribute('href'));
@@ -633,7 +769,7 @@
             });
         });
         
-        // Carousel Functionality
+        // Hero Carousel Functionality
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-slide');
         const dots = document.querySelectorAll('.dot');
@@ -676,7 +812,6 @@
             });
         });
         
-        // Auto slide every 5 seconds
         let autoSlideInterval = setInterval(nextSlide, 5000);
         const carouselContainer = document.getElementById('carouselContainer');
         if(carouselContainer) {
@@ -685,16 +820,13 @@
                 autoSlideInterval = setInterval(nextSlide, 5000);
             });
         }
-        
         showSlide(0);
         
-        // Form submission - Sends to Email and WhatsApp
+        // Reservation Form
         const reservationForm = document.getElementById('reservationForm');
         if(reservationForm) {
             reservationForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                
-                // Get form values
                 const fullName = document.getElementById('fullName').value;
                 const email = document.getElementById('email').value;
                 const phone = document.getElementById('phone').value;
@@ -704,7 +836,6 @@
                 const eventType = document.getElementById('eventType').value;
                 const message = document.getElementById('message').value;
                 
-                // Format message for WhatsApp
                 const whatsappMessage = `Hello Folks & Roses! I would like to make a reservation:
                 
 Name: ${fullName}
@@ -718,7 +849,6 @@ Special Requests: ${message || "None"}
 
 Please confirm my reservation. Thank you!`;
                 
-                // Format message for Email
                 const emailSubject = `Reservation Request - ${fullName}`;
                 const emailBody = `New Reservation Request:
                 
@@ -733,23 +863,231 @@ Special Requests: ${message || "None"}
                 
 Please confirm this reservation within 2 hours.`;
                 
-                // Open WhatsApp with the message
-                const whatsappUrl = `https://wa.me/256780304392?text=${encodeURIComponent(whatsappMessage)}`;
-                
-                // Open email client with pre-filled message
-                const mailtoUrl = `mailto:iamonenjb@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                
-                // Open both WhatsApp and Email in new windows
-                window.open(whatsappUrl, '_blank');
-                window.open(mailtoUrl, '_blank');
-                
-                // Show success message
+                window.open(`https://wa.me/256780304392?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+                window.open(`mailto:iamonenjb@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`, '_blank');
                 alert('Thank you for your reservation request! We have opened WhatsApp and email for you. Please send the message to complete your reservation.');
-                
-                // Optionally reset the form
-                // this.reset();
             });
         }
+        
+        // ========== GALLERY CAROUSEL ==========
+        // Images folks9 through folks15 (remaining images)
+        const galleryImagesList = [
+            'assets/images/folks9', 'assets/images/folks10', 'assets/images/folks11',
+            'assets/images/folks12', 'assets/images/folks13', 'assets/images/folks14', 'assets/images/folks15'
+        ];
+        
+        const track = document.getElementById('galleryTrack');
+        const prevGalleryBtn = document.getElementById('galleryPrevBtn');
+        const nextGalleryBtn = document.getElementById('galleryNextBtn');
+        const dotsContainer = document.getElementById('galleryDots');
+        
+        let currentIndex = 0;
+        let autoSlideGalleryInterval;
+        let itemsPerView = 2;
+        let totalSlidesGallery = galleryImagesList.length;
+        
+        function updateItemsPerView() {
+            itemsPerView = window.innerWidth <= 768 ? 1 : 2;
+            totalSlidesGallery = Math.ceil(galleryImagesList.length / itemsPerView);
+            return totalSlidesGallery;
+        }
+        
+        function loadGalleryCarousel() {
+            if (!track) return;
+            
+            updateItemsPerView();
+            track.innerHTML = '';
+            
+            // Create slides (each slide contains up to itemsPerView images)
+            const slidesCount = Math.ceil(galleryImagesList.length / itemsPerView);
+            
+            for (let s = 0; s < slidesCount; s++) {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'gallery-carousel-slide';
+                
+                // Create inner container for images in this slide
+                const innerContainer = document.createElement('div');
+                innerContainer.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+                
+                for (let i = s * itemsPerView; i < Math.min((s + 1) * itemsPerView, galleryImagesList.length); i++) {
+                    const imgPath = galleryImagesList[i];
+                    const imgContainer = document.createElement('div');
+                    imgContainer.className = 'cursor-pointer';
+                    
+                    const img = document.createElement('img');
+                    img.src = `${imgPath}.jpg`;
+                    img.alt = `Folks & Roses Gallery Image ${i + 1}`;
+                    img.loading = 'lazy';
+                    
+                    img.onerror = function() {
+                        if (this.src.endsWith('.jpg')) {
+                            this.src = `${imgPath}.jpeg`;
+                        } else if (this.src.endsWith('.jpeg')) {
+                            this.src = `${imgPath}.png`;
+                        } else if (this.src.endsWith('.png')) {
+                            this.src = `${imgPath}.webp`;
+                        }
+                    };
+                    
+                    imgContainer.appendChild(img);
+                    imgContainer.addEventListener('click', () => openLightbox(i));
+                    innerContainer.appendChild(imgContainer);
+                }
+                
+                slideDiv.appendChild(innerContainer);
+                track.appendChild(slideDiv);
+            }
+            
+            createDots();
+            updateCarouselPosition();
+        }
+        
+        function createDots() {
+            if (!dotsContainer) return;
+            const total = Math.ceil(galleryImagesList.length / itemsPerView);
+            dotsContainer.innerHTML = '';
+            
+            for (let i = 0; i < total; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition-all', 'cursor-pointer');
+                dot.classList.add(i === currentIndex ? 'bg-maroon' : 'bg-gray-300');
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarouselPosition();
+                    resetAutoSlide();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        }
+        
+        function updateDots() {
+            if (!dotsContainer) return;
+            const dots = dotsContainer.querySelectorAll('div');
+            dots.forEach((dot, i) => {
+                if (i === currentIndex) {
+                    dot.classList.remove('bg-gray-300');
+                    dot.classList.add('bg-maroon');
+                } else {
+                    dot.classList.remove('bg-maroon');
+                    dot.classList.add('bg-gray-300');
+                }
+            });
+        }
+        
+        function updateCarouselPosition() {
+            if (!track) return;
+            const slideWidth = track.children[0]?.offsetWidth + 24 || 0; // 24px gap
+            const offset = -currentIndex * slideWidth;
+            track.style.transform = `translateX(${offset}px)`;
+            updateDots();
+        }
+        
+        function nextGallerySlide() {
+            const total = Math.ceil(galleryImagesList.length / itemsPerView);
+            currentIndex = (currentIndex + 1) % total;
+            updateCarouselPosition();
+        }
+        
+        function prevGallerySlide() {
+            const total = Math.ceil(galleryImagesList.length / itemsPerView);
+            currentIndex = (currentIndex - 1 + total) % total;
+            updateCarouselPosition();
+        }
+        
+        function startAutoSlide() {
+            if (autoSlideGalleryInterval) clearInterval(autoSlideGalleryInterval);
+            autoSlideGalleryInterval = setInterval(() => {
+                nextGallerySlide();
+            }, 4000);
+        }
+        
+        function resetAutoSlide() {
+            if (autoSlideGalleryInterval) clearInterval(autoSlideGalleryInterval);
+            startAutoSlide();
+        }
+        
+        if (prevGalleryBtn) prevGalleryBtn.addEventListener('click', () => { prevGallerySlide(); resetAutoSlide(); });
+        if (nextGalleryBtn) nextGalleryBtn.addEventListener('click', () => { nextGallerySlide(); resetAutoSlide(); });
+        
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        let currentImgIndex = 0;
+        
+        function openLightbox(index) {
+            currentImgIndex = index;
+            const imgPath = galleryImagesList[currentImgIndex];
+            lightboxImg.src = `${imgPath}.jpg`;
+            lightboxImg.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = `${imgPath}.jpeg`;
+                } else if (this.src.endsWith('.jpeg')) {
+                    this.src = `${imgPath}.png`;
+                } else if (this.src.endsWith('.png')) {
+                    this.src = `${imgPath}.webp`;
+                }
+            };
+            lightbox.classList.add('active');
+        }
+        
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+        }
+        
+        function nextImage() {
+            currentImgIndex = (currentImgIndex + 1) % galleryImagesList.length;
+            const imgPath = galleryImagesList[currentImgIndex];
+            lightboxImg.src = `${imgPath}.jpg`;
+            lightboxImg.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = `${imgPath}.jpeg`;
+                } else if (this.src.endsWith('.jpeg')) {
+                    this.src = `${imgPath}.png`;
+                } else if (this.src.endsWith('.png')) {
+                    this.src = `${imgPath}.webp`;
+                }
+            };
+        }
+        
+        function prevImage() {
+            currentImgIndex = (currentImgIndex - 1 + galleryImagesList.length) % galleryImagesList.length;
+            const imgPath = galleryImagesList[currentImgIndex];
+            lightboxImg.src = `${imgPath}.jpg`;
+            lightboxImg.onerror = function() {
+                if (this.src.endsWith('.jpg')) {
+                    this.src = `${imgPath}.jpeg`;
+                } else if (this.src.endsWith('.jpeg')) {
+                    this.src = `${imgPath}.png`;
+                } else if (this.src.endsWith('.png')) {
+                    this.src = `${imgPath}.webp`;
+                }
+            };
+        }
+        
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+            document.querySelector('.lightbox-close')?.addEventListener('click', closeLightbox);
+            document.querySelector('.lightbox-prev')?.addEventListener('click', prevImage);
+            document.querySelector('.lightbox-next')?.addEventListener('click', nextImage);
+            document.addEventListener('keydown', (e) => {
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') closeLightbox();
+                    if (e.key === 'ArrowLeft') prevImage();
+                    if (e.key === 'ArrowRight') nextImage();
+                }
+            });
+        }
+        
+        window.addEventListener('resize', () => {
+            loadGalleryCarousel();
+            currentIndex = 0;
+            updateCarouselPosition();
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGalleryCarousel();
+            startAutoSlide();
+        });
     </script>
 </body>
 </html>
